@@ -1,0 +1,8 @@
+---
+
+- name: Add configs to limits.conf
+  lineinfile:
+    state: present
+    path: "{{ limits_conf_full_path }}"
+    line: "{{ item }}"
+  loop: "{{ limits_conf_configs }}"

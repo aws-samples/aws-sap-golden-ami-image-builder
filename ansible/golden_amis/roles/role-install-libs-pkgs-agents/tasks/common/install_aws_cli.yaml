@@ -1,0 +1,32 @@
+---
+
+- name: Ensure tmp dir for AWS exists
+  file:
+    name: "{{ aws_installer_dir }}"
+    state: directory
+    mode: 0777
+
+- name: Download AWS CLI
+  get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: "{{ aws_installer_dir }}/awscliv2.zip"
+    mode: '0777'
+
+- name: Unzip AWS CLI install package
+  unarchive: 
+    remote_src: yes
+    src: "{{ aws_installer_dir }}/awscliv2.zip"
+    dest: "{{ aws_installer_dir }}"
+
+- name: Remove existing AWS installation
+  include_tasks: remove_aws_cli.yaml
+  
+- name: Install AWS CLI
+  shell: "{{ aws_installer_dir }}/aws/install --update --bin-dir /usr/bin"
+  register: cli_install_output
+  ignore_errors: yes
+
+- name: Cleanup installer files
+  file:
+    path: "{{ aws_installer_dir }}"
+    state: absent

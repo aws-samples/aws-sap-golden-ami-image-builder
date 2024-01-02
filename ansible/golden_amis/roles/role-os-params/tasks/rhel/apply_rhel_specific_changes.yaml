@@ -1,0 +1,28 @@
+---
+
+- name: Disable core dump
+  include_tasks: disable_core_dumps.yaml
+
+- name: Disable KSM
+  include_tasks: disable_ksm.yaml
+
+- name: Disable SELINUX
+  include_tasks: disable_selinux.yaml
+
+- name: Enable TSX
+  include_tasks: enable_tsx.yaml
+
+- name: Configure user limits for SAP
+  include_tasks: rhel/set_99_sap_conf.yaml
+
+- name: Set limits.conf
+  include_tasks: set_limits_conf.yaml
+
+- name: Set sap.conf
+  include_tasks: set_sap_conf.yaml
+
+- name: Set tmpfiles/sap.conf
+  include_tasks: set_tmp_files_sap_conf.yaml
+
+- name: Set tuned
+  include_tasks: set_tuned.yaml

@@ -1,0 +1,8 @@
+---
+
+- name: Install packages, data provider and configure Operating System
+  become: true
+  hosts: localhost
+  roles:
+    - role: role-install-libs-pkgs-agents
+    - role: role-os-params

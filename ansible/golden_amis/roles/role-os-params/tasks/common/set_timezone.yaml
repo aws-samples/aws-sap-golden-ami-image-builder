@@ -1,0 +1,4 @@
+---
+
+- name: Set instance timezone to "{{ timezone }}"
+  command: timedatectl set-timezone "{{ timezone }}"

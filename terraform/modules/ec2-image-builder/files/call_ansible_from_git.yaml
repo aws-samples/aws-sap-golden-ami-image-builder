@@ -1,0 +1,35 @@
+name: Run custom Ansible code
+description: Run custom Ansible code to bootstrap instance
+schemaVersion: 1.0
+phases:
+  - name: build
+    steps:
+      - name: InstallAnsibleAndGit
+        action: ExecuteBash
+        inputs:
+          commands:
+            - linux_distro=$(rpm -qf /etc/redhat-release)
+            - if [[ $linux_distro == *"oraclelinux"* ]]; then
+            -   sudo dnf install -y epel-release
+            -   sudo dnf install -y git ansible
+            - else
+            -   sudo yum install -y git ansible
+            - fi
+      - name: DownloadPlaybook
+        action: ExecuteBash
+        inputs:
+          commands:
+            - ansible_playbook_folder="/home/ec2-user/sap-ec2-image-builder"
+            - rm -rf $ansible_playbook_folder
+            - git clone https://github.com/guisesterheim/sap-ec2-image-builder.git $ansible_playbook_folder
+      - name: InvokeAnsible
+        action: ExecuteBinary
+        inputs:
+          path: ansible-playbook
+          arguments:
+            - '/home/ec2-user/sap-ec2-image-builder/ansible/golden_amis/bootstrap_instance.yaml'
+      - name: DeletePlaybook
+        action: DeleteFolder
+        inputs:
+          - path: /home/ec2-user/sap-ec2-image-builder
+            force: true

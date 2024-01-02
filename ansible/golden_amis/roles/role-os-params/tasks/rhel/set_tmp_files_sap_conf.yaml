@@ -1,0 +1,14 @@
+---
+
+- name: Ensure "{{ etc_tmpfiles_sap_full_path }}" exists
+  file:
+    path: "{{ etc_tmpfiles_sap_full_path }}"
+    state: touch
+    mode: '0644'
+
+- name: Add configs to "{{ etc_tmpfiles_sap_full_path }}"
+  lineinfile:
+    state: present
+    path: "{{ etc_tmpfiles_sap_full_path }}"
+    line: "{{ item }}"
+  loop: "{{ etc_tmpfiles_sap_configs }}"

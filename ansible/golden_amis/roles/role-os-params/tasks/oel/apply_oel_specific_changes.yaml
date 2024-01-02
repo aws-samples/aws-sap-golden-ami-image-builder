@@ -1,0 +1,7 @@
+---
+
+- name: Set SELINUX for OEL
+  include_tasks: set_selinux.yaml
+
+- name: Configure user limits for SAP
+  include_tasks: oel/set_99_sap_conf.yaml

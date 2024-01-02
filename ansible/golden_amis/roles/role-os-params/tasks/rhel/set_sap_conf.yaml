@@ -1,0 +1,14 @@
+---
+
+- name: Make sure sap.conf exists
+  file:
+    path: "{{ sap_conf_full_path }}"
+    state: touch
+    mode: 0755
+
+- name: Add configs to sap.conf
+  lineinfile:
+    state: present
+    path: "{{ sap_conf_full_path }}"
+    line: "{{ item }}"
+  loop: "{{ sap_conf_configs }}"

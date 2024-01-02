@@ -1,0 +1,17 @@
+---
+
+- name: Install YUM dependencies
+  yum:
+    name: "{{ rhel_8_8_packages }}"
+    state: present
+  
+- name: Install YUM dependencies group packages
+  yum:
+    name: "{{ rhel_group_packages }}"
+    state: present
+
+- name: Update all packages
+  yum:
+    name: '*'
+    state: latest
+  ignore_errors: true

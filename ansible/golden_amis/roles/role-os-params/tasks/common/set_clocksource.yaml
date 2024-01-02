@@ -1,0 +1,22 @@
+---
+
+- name: Copy a new {{ grub_file_path }} file into place, backing up the original
+  copy:
+    src: "{{ grub_file_path }}"
+    dest: "{{ grub_bkp_file_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Check if clocksource is set in {{ grub_file_path }} file
+  shell: "cat {{ grub_file_path }} | grep -c \"{{ grub_clocksource_string }}\""
+  register: grub_clocksource
+  ignore_errors: true
+
+- name: Append clocksource=tsc to existing line of GRUB_CMDLINE_LINUX commands
+  command: sed -i '/GRUB_CMDLINE_LINUX/ s|"| {{ grub_clocksource_string }}"|2' {{ grub_file_path }}
+  when: grub_clocksource.stdout == "0"
+    
+- name: Make Grub config
+  command: grub2-mkconfig -o /boot/grub2/grub.cfg
+  when: grub_clocksource.stdout == "0"

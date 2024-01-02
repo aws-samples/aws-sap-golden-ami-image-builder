@@ -1,0 +1,13 @@
+---
+
+- name: Enable NFS service
+  service:
+    name: nfs-utils
+    enabled: true
+    state: started
+
+- name: Enable AUTOFS service
+  service:
+    name: autofs
+    enabled: true
+    state: started

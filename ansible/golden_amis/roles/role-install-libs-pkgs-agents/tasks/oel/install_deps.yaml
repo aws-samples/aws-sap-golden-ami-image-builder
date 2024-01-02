@@ -1,0 +1,31 @@
+---
+
+- name: Add config-manager config
+  command: dnf config-manager --enable ol8_codeready_builder
+
+- name: Install YUM dependencies
+  yum:
+    name: "{{ oel_yum_packages }}"
+    state: present
+
+- name: Install DNF dependencies
+  dnf:
+    name: "{{ oel_dnf_packages }}"
+    state: present
+
+- name: Install YUM dependencies for 32 bits
+  yum:
+    name: "{{ oel_yum_packages_32bits }}"
+    state: present
+
+- name: Update all packages with YUM
+  yum:
+    name: '*'
+    state: latest
+  ignore_errors: true
+
+- name: Update all packages with DNF
+  dnf:
+    name: '*'
+    state: latest
+  ignore_errors: true

@@ -1,0 +1,178 @@
+---
+
+aws_installer_dir: /tmp/aws
+
+rhel_data_provider_url: https://aws-sap-dataprovider-us-east-1.s3.us-east-1.amazonaws.com/v4/installers/linux/RHEL/aws-sap-dataprovider-rhel-standalone.x86_64.rpm
+rhel_data_provider_installer_dest_path: /tmp/data_provider_rhel.rpm
+
+# REDHAT (RHEL) RELATED VARIABLES
+rhel_8_8_packages:
+  - python3
+  - python2
+  - unzip
+  - xfsprogs
+  - autofs
+  - libatomic
+  - gcc
+  - glibc.x86_64
+  - nvme-cli
+  - libnsl
+  - uuidd
+  - tcsh
+  - bind-utils
+  - psmisc
+  - expect
+  - graphviz
+  - iptraf-ng
+  - krb5-workstation 
+  - libcanberra-gtk2
+  - libibverbs
+  - libicu
+  - libpng12
+  - libssh2
+  - lm_sensors
+  - numactl
+  - PackageKit-gtk3-module
+  - xorg-x11-xauth
+  - libaio
+  - libtool-ltdl
+  - lvm2
+  - nfs-utils
+  - sysstat
+  - kernel
+  - chrony
+  - corosync
+  - pcs
+  - pacemaker
+  - fence-agents-aws
+  - resource-agents
+  - resource-agents-sap
+  - tuned-profiles-sap
+  - tuned-profiles-sap-hana
+  - sapconf
+  - resource-agents-sap-hana
+  - sap-cluster-connector
+  - compat-sap-c++-9
+  - compat-sap-c++-10
+  - tuned
+  - jq
+  - net-tools
+  - git
+  - rpm-build
+  - make
+  - gtk2
+  - krb5-libs
+  - openssl
+  - rsyslog
+  - sudo
+  - cairo
+  - xterm
+  - xhost
+
+rhel_group_packages:
+  - "@Server"
+
+oel_yum_packages:
+  - python3 
+  - python2 
+  - unzip 
+  - xfsprogs 
+  - autofs 
+  - gcc 
+  - glibc.x86_64 
+  - nvme-cli 
+  - libatomic 
+  - libnsl 
+  - uuidd 
+  - tcsh 
+  - bind-utils 
+  - psmisc 
+  - expect 
+  - graphviz 
+  - iptraf-ng 
+  - krb5-workstation 
+  - libcanberra-gtk2 
+  - libibverbs 
+  - libicu 
+  - libpng12 
+  - libssh2
+  - lm_sensors 
+  - numactl 
+  - PackageKit-gtk3-module 
+  - xorg-x11-xauth 
+  - libaio 
+  - libtool-ltdl 
+  - lvm2 
+  - nfs-utils 
+  - sysstat 
+  - kernel 
+  - chrony 
+  - jq 
+  - net-tools 
+  - git 
+  - rpm-build 
+  - make 
+  - ansible-core
+  - xterm
+  - xhost
+  - xorg-x11-apps
+
+oel_dnf_packages:
+  - oracle-database-preinstall-19c
+  - bc
+  - binutils
+  - elfutils-libelf
+  - elfutils-libelf-devel
+  - fontconfig-devel
+  - glibc
+  - glibc-devel
+  - ksh
+  - libaio
+  - libaio-devel
+  - libXrender
+  - libXrender-devel
+  - libX11
+  - libXau
+  - libXi
+  - libXtst
+  - libgcc
+  - librdmacm
+  - librdmacm-devel
+  - libstdc++
+  - libstdc++-devel
+  - libxcb
+  - libibverbs
+  - make
+  - net-tools
+  - nfs-utils
+  - targetcli
+  - smartmontools
+  - sysstat
+  - unixODBC
+  - libnsl
+  - libnsl.i686
+  - libnsl2
+  - libnsl2.i686
+  - policycoreutils
+  - policycoreutils-python-utils
+
+oel_yum_packages_32bits:
+  - elfutils-libelf.i686
+  - elfutils-libelf-devel.i686
+  - fontconfig-devel.i686
+  - glibc.i686
+  - glibc-devel.i686
+  - libaio.i686
+  - libaio-devel.i686
+  - libXrender.i686
+  - libX11.i686
+  - libXau.i686
+  - libXi.i686
+  - libXtst.i686
+  - libgcc.i686
+  - libnsl.i686
+  - librdmacm.i686
+  - libstdc++.i686
+  - libstdc++-devel.i686
+  - libxcb.i686
+  - libibverbs.i686

@@ -1,0 +1,19 @@
+---
+
+- name: Create UUIDD startup service file
+  copy:
+    src: "{{ role_path }}/files/{{ custom_uuidd_startup_service_file_name }}"
+    dest: /etc/systemd/system/{{ custom_uuidd_startup_service_file_name }}
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Runs daemon-reload to pick up new service
+  systemd:
+    daemon_reload: true
+
+- name: Start custom service
+  systemd:
+    state: started
+    enabled: true
+    name: "{{ custom_uuidd_startup_service_file_name }}"

@@ -1,0 +1,13 @@
+---
+
+- name: Make sure 99-sap.conf exists
+  file:
+    path: "{{ ninetynine_sap_conf_full_path }}"
+    state: touch
+
+- name: Add configs to 99-sap.conf
+  lineinfile:
+    state: present
+    path: "{{ ninetynine_sap_conf_full_path }}"
+    line: "{{ item }}"
+  loop: "{{ rhel_ninetynine_sap_conf_configs }}"

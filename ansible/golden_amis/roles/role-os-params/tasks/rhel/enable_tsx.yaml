@@ -1,0 +1,4 @@
+---
+
+- name: Enable TSX
+  command: grubby --args="tsx=on" --update-kernel=ALL

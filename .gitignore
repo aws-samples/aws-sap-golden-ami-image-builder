@@ -1,0 +1,7 @@
+*.pem
+*.terraform
+*.terraform.*
+assume_role.sh
+tfplan.log
+run_terraform_init_local.sh
+dev.tfvars

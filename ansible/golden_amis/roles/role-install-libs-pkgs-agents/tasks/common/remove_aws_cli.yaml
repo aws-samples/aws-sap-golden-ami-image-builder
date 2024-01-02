@@ -1,0 +1,10 @@
+---
+
+- name: Remove AWS CLI
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/usr/local/bin/aws"
+    - "/usr/local/bin/aws_completer"
+    - "/usr/local/aws-cli"

@@ -1,0 +1,7 @@
+---
+
+- name: Ensure SELinux is set to disabled mode
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=disabled

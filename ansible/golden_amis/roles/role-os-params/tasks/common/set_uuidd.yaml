@@ -1,0 +1,13 @@
+--- 
+
+- name: Checking config for UUIDD
+  command: chkconfig uuidd on
+
+- name: Enable UUIDD service
+  service:
+    name: uuidd
+    enabled: true
+    state: started
+
+- name: Create service to keep UUIDD started, even after reboot
+  include_tasks: create_uuidd_starter.yaml

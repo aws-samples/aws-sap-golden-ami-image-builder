@@ -1,0 +1,33 @@
+environment = "dev"
+aws_region  = "us-east-1"
+app_name    = "goldenAMI"
+
+kms_key_arn = "<YOUR KMS KEY ARN HERE>"
+
+vpc_id = "<YOUR VPC ID>"
+subnet_id = "<YOUR SUBNET ID>"
+
+image_builder_map = {
+  rhel_sap_8_8 = {
+    app_name = "RHEL"
+    operating_system = "RHEL"
+    final_usage_of_ami = "SAP"
+
+    base_ami = "<RHEL AMI FROM STEP 1.4.4>"
+    versions = {
+        "v1.0.0": "1.0.0"
+    }
+    version_to_publish = "v1.0.0"
+  }
+  oel_sap_8_8 = {
+    app_name           = "OEL"
+    operating_system   = "OEL"
+    final_usage_of_ami = "SAP-and-Oracle"
+
+    base_ami = "<OEL AMI FROM STEP 2>"
+    versions = {
+      "v1.0.0" : "1.0.0"
+    }
+    version_to_publish = "v1.0.0"
+  }
+}

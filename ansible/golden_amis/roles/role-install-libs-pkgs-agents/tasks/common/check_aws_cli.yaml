@@ -1,0 +1,11 @@
+---
+
+- name: Check is AWS CLI is installed and accessible by root user
+  command: "aws --version"
+  register: prereq_aws
+  changed_when: false
+  ignore_errors: yes
+
+- name: Install AWS CLI
+  include_tasks: install_aws_cli.yaml
+  when: prereq_aws is failed

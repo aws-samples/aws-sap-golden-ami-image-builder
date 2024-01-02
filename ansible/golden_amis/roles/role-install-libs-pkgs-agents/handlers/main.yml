@@ -1,0 +1,7 @@
+---
+
+- name: Restart SSM Agent service
+  service:
+    name: amazon-ssm-agent
+    enabled: yes
+    state: restarted

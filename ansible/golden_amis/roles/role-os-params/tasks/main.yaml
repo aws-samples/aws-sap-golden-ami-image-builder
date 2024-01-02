@@ -1,0 +1,24 @@
+---
+
+- name: Disable firewall
+  include_tasks: common/disable_firewall.yaml
+
+- name: Enable NFS
+  include_tasks: common/enable_nfs.yaml
+
+- name: Set clock source
+  include_tasks: common/set_clocksource.yaml
+
+- name: Set timezone
+  include_tasks: common/set_timezone.yaml
+
+- name: Set UUIDD
+  include_tasks: common/set_uuidd.yaml
+
+- name: Apply OEL specific changes
+  include_tasks: oel/apply_oel_specific_changes.yaml
+  when: ansible_distribution == "OracleLinux"
+
+- name: Apply RHEL specific changes
+  include_tasks: rhel/apply_rhel_specific_changes.yaml
+  when: ansible_distribution == "RedHat"

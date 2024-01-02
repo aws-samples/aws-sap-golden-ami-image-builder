@@ -1,0 +1,14 @@
+[Unit]
+Description=Script to start UUIDD service at boot time
+After=network.target
+
+[Service]
+ExecStart=/bin/systemctl start uuidd
+Restart=always
+RestartSec=90
+User=root
+Group=root
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

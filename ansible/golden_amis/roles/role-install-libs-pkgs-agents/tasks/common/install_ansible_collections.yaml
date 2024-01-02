@@ -1,0 +1,11 @@
+---
+
+- name: Install required collections
+  command: "{{ item }}"
+  loop:
+    - "ansible-galaxy collection install community.general"
+    - "ansible-galaxy collection install ansible.posix"
+  retries: 3
+  delay: 3
+  register: result
+  until: result.rc == 0

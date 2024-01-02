@@ -1,0 +1,35 @@
+---
+
+- name: Enable tuned service
+  service:
+    name: tuned
+    enabled: true
+    state: started
+
+- name: Create tuned folder
+  file:
+    path: "{{ tuned_folder_path }}"
+    state: directory
+
+- name: Copy a tuned.conf from /usr/lib into {{ tuned_folder_path }}
+  copy:
+    src: "{{ original_tuned_file_full_path }}"
+    dest: "{{ tuned_file_full_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+  ignore_errors: yes
+
+- name: Ensure tuned latency is set to 70
+  lineinfile:
+    path: "{{ tuned_file_full_path }}"
+    regexp: '^force_latency='
+    line: force_latency=70
+  ignore_errors: yes
+
+- name: Create and activate sap-hana profile
+  command: "{{ item }}"
+  loop:
+    - tuned-adm profile sap-hana
+    - tuned-adm active
+  ignore_errors: yes

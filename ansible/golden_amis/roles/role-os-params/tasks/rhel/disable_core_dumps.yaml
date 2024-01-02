@@ -1,0 +1,12 @@
+---
+
+- name: Disable core services
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  loop:
+    - abrtd
+    - abrt-ccpp
+    - kdump
+  ignore_errors: yes

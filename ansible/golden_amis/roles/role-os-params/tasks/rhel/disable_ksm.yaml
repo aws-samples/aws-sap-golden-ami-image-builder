@@ -1,0 +1,7 @@
+---
+
+- name: Disable KSM
+  lineinfile:
+    path: /sys/kernel/mm/ksm/run
+    state: present
+    line: 0

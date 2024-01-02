@@ -1,0 +1,73 @@
+---
+
+default_instance_timezone: America/New_York
+timezone: "{{ input_custom_timezone | default(default_instance_timezone) }}"
+aws_installer_dir: /tmp/aws
+
+grub_file_path: /etc/default/grub
+grub_bkp_file_path: /etc/default/grub.bkp
+grub_clocksource_string: clocksource=tsc
+
+sap_conf_full_path: "/usr/lib/sysctl.d/sap.conf"
+sap_conf_configs:
+  - kernel.sem = 1250 256000 100 1024
+  - vm.max_map_count = 2147483647
+
+limits_conf_full_path: "/etc/security/limits.conf"
+limits_conf_configs:
+  - '@sapsys - nofile 1048576'
+  - '@dba    - nofile 1048576'
+  - '@sdba   - nofile 1048576'
+
+ninetynine_sap_conf_full_path: /etc/security/limits.d/99-sap.conf
+rhel_ninetynine_sap_conf_configs:
+  - '@sapsys - nofile 1048576'
+  - '@dba    - nofile 1048576'
+  - '@sdba   - nofile 1048576'
+  
+oel_ninetynine_sap_conf_configs:
+  - '@sapsys hard nproc unlimited'
+  - '@sapsys soft nproc unlimited'
+  - '@sapsys soft core unlimited'
+  - '@sapsys hard core unlimited'
+  - '@sapsys soft nofile 65536'
+  - '@sapsys hard nofile 65536'
+  - '@dba hard nproc unlimited'
+  - '@dba soft nproc unlimited'
+  - '@dba soft nofile 65536'
+  - '@dba hard nofile 65536'
+  - '@dba soft core unlimited'
+  - '@dba hard core unlimited'
+  - '@dba soft memlock 134217728'
+  - '@dba hard memlock 134217728'
+  - '@dba soft stack 10240'
+  - '@dba hard stack 32768'
+  - '@oinstall hard nproc unlimited'
+  - '@oinstall soft nproc unlimited'
+  - '@oinstall soft nofile 65536'
+  - '@oinstall hard nofile 65536'
+  - '@oinstall soft core unlimited'
+  - '@oinstall hard core unlimited'
+  - 'root soft core unlimited'
+  - 'root hard core unlimited'
+  - 'root soft nofile 8192'
+  - 'root hard nofile 8192'
+  - '* soft core 0'
+  - '* hard core 0'
+
+etc_tmpfiles_sap_full_path: /etc/tmpfiles.d/sap.conf
+etc_tmpfiles_sap_configs: 
+  - '# systemd.tmpfiles exclude file for SAP'
+  - '# SAP software stores some important files in /tmp which should not be deleted automatically'
+  - '# Exclude SAP socket and lock files'
+  - 'x /tmp/.sap*'
+  - '# Exclude HANA lock file'
+  - 'x /tmp/.hdb*lock'
+  - '# Exclude TREX lock file'
+  - 'x /tmp/.trex*lock'
+
+original_tuned_file_full_path: /usr/lib/tuned/sap-hana/tuned.conf
+tuned_folder_path: /etc/tuned/sap-hana
+tuned_file_full_path: "{{ tuned_folder_path }}/tuned.conf"
+
+custom_uuidd_startup_service_file_name: "customuuiddstartup.service"
