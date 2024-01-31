@@ -12,6 +12,8 @@ resource "aws_imagebuilder_distribution_configuration" "this" {
         },
       var.tags)
 
+      kms_key_id = var.kms_key_arn
+
       name = "Golden-AMI-${var.operating_system}-{{ imagebuilder:buildDate }}"
     }
     region = var.aws_region

@@ -3,6 +3,7 @@ module "parameters" {
 
   aws_region  = var.aws_region
   environment = var.environment
+  kms_key_arn = var.kms_key_arn
 
   params_to_create = {
     "amis/golden/${lower(var.operating_system)}/${lower(var.final_usage_of_ami)}" = {

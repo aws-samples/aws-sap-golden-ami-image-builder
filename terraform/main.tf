@@ -1,8 +1,8 @@
 resource "random_string" "random" {
-  length           = 5
-  special          = false
-  lower = true
-  upper = false
+  length  = 5
+  special = false
+  lower   = true
+  upper   = false
 }
 
 module "s3_bucket_ec2_image_builder" {

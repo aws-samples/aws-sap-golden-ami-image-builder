@@ -12,3 +12,8 @@ variable "params_to_create" {
   description = "Map of parameters to be created"
   type        = map(map(string))
 }
+
+variable "kms_key_arn" {
+  description = "Key ARN on KMS to use"
+  type        = string
+}

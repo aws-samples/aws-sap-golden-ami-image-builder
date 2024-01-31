@@ -1,6 +1,6 @@
 resource "aws_imagebuilder_infrastructure_configuration" "this" {
   description                   = "Infra config for when building a new AMI"
-  instance_profile_name         = var.ec2_iam_role_name
+  instance_profile_name         = var.instance_profile_name
   instance_types                = ["m4.2xlarge"]
   name                          = "${var.environment}-${var.operating_system}-Infra-Config"
   terminate_instance_on_failure = true

@@ -5,11 +5,11 @@ locals {
 }
 
 resource "aws_iam_role" "iam_role" {
-  name                 = local.iam_instance_role_name
-  assume_role_policy   = data.aws_iam_policy_document.iam_instance_trust.json
-  
+  name               = local.iam_instance_role_name
+  assume_role_policy = data.aws_iam_policy_document.iam_instance_trust.json
+
   tags = merge({
-    "Name"     = local.iam_instance_role_name,
+    "Name" = local.iam_instance_role_name,
     },
   var.tags)
 }
@@ -30,12 +30,17 @@ resource "aws_iam_policy" "image_builder_policy" {
   policy = data.aws_iam_policy_document.image_builder.json
 
   tags = merge({
-    "Name"       = local.iam_policy_name,
+    "Name" = local.iam_policy_name,
     },
   var.tags)
 }
 
-resource "aws_iam_role_policy_attachment" "attach_image_builder_policy" {
+resource "aws_iam_role_policy_attachment" "nodes_add" {
+  for_each = {
+    "image_builder" = aws_iam_policy.image_builder_policy.arn,
+    "ssm"      = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+  }
+
+  policy_arn = each.value
   role       = aws_iam_role.iam_role.name
-  policy_arn = aws_iam_policy.image_builder_policy.arn
 }

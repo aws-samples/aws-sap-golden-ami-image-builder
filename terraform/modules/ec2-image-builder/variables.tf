@@ -38,7 +38,7 @@ variable "final_usage_of_ami" {
   type        = string
 }
 
-variable "ec2_iam_role_name" {
+variable "instance_profile_name" {
   description = "Role to be used for building the image"
   type        = string
 }

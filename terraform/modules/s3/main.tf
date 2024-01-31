@@ -22,3 +22,30 @@ resource "aws_s3_bucket_policy" "disable_non_https" {
   bucket = aws_s3_bucket.bucket.id
   policy = data.aws_iam_policy_document.disable_non_https.json
 }
+
+resource "aws_s3_bucket_logging" "logging" {
+  bucket = aws_s3_bucket.bucket.id
+
+  target_bucket = aws_s3_bucket.bucket.id
+  target_prefix = "access-log/"
+}
+
+resource "aws_s3_bucket_public_access_block" "access_good" {
+  bucket              = aws_s3_bucket.bucket.id
+  block_public_acls   = true
+  block_public_policy = true
+}
+
+resource "aws_s3_bucket_ownership_controls" "example" {
+  bucket = aws_s3_bucket.bucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  depends_on = [aws_s3_bucket_ownership_controls.example]
+
+  bucket = aws_s3_bucket.bucket.id
+  acl    = "private"
+}
