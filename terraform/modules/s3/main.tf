@@ -7,6 +7,25 @@ resource "aws_s3_bucket" "bucket" {
   })
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
+  bucket = aws_s3_bucket.bucket.id
+
+  rule {
+    id     = "rule-1"
+    filter = {}
+
+    expiration {
+      days = 90
+    }
+
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 7
+    }
+
+    status = "Enabled"
+  }
+}
+
 resource "aws_s3_bucket_server_side_encryption_configuration" "encryption" {
   bucket = aws_s3_bucket.bucket.id
 
@@ -31,19 +50,21 @@ resource "aws_s3_bucket_logging" "logging" {
 }
 
 resource "aws_s3_bucket_public_access_block" "access_good" {
-  bucket              = aws_s3_bucket.bucket.id
-  block_public_acls   = true
-  block_public_policy = true
+  bucket                  = aws_s3_bucket.bucket.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
 }
 
-resource "aws_s3_bucket_ownership_controls" "example" {
+resource "aws_s3_bucket_ownership_controls" "controls" {
   bucket = aws_s3_bucket.bucket.id
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_acl" "example" {
+resource "aws_s3_bucket_acl" "acl" {
   depends_on = [aws_s3_bucket_ownership_controls.example]
 
   bucket = aws_s3_bucket.bucket.id

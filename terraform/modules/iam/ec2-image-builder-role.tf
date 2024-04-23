@@ -38,7 +38,7 @@ resource "aws_iam_policy" "image_builder_policy" {
 resource "aws_iam_role_policy_attachment" "nodes_add" {
   for_each = {
     "image_builder" = aws_iam_policy.image_builder_policy.arn,
-    "ssm"      = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
+    "ssm"           = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore",
   }
 
   policy_arn = each.value
