@@ -11,6 +11,14 @@
   include_tasks: oel/install_deps.yaml
   when: ansible_distribution == "OracleLinux"
 
+- name: Show distribution
+  debug: 
+    msg: "{{ ansible_distribution }}"
+
+- name: Install dependencies for SUSE
+  include_tasks: suse/install_deps.yaml
+  when: ansible_distribution == "SUSE"
+
 - name: Check if AWS CLI is available
   include_tasks: common/check_aws_cli.yaml
 

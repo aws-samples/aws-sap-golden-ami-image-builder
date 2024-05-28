@@ -176,3 +176,32 @@ oel_yum_packages_32bits:
   - libstdc++-devel.i686
   - libxcb.i686
   - libibverbs.i686
+
+suse_15_5_packages:
+  - systemd 
+  - gtk2 
+  - libicu 
+  - sudo 
+  - tcsh 
+  - libssh2-1 
+  - autoyast2-installation 
+  - yast2-ncurses 
+  - cpupower 
+  - libgcc_s1 
+  - libstdc++6 
+  - nvme-cli 
+  - cloud-netconfig-ec2 
+  - libopenssl1_0_0  
+  - insserv-compat 
+  - unrar_wrapper 
+  - chrony 
+  - net-tools-deprecated 
+  - libnuma-devel 
+  - gcc 
+  - gcc-c++ 
+  - libatomic1 
+  - ntp 
+  - sapconf 
+  - numactl 
+  - saptune 
+  - patterns-sles-sap_server 

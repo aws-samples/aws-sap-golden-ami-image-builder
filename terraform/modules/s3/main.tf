@@ -12,7 +12,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "lifecycle" {
 
   rule {
     id     = "rule-1"
-    filter = {}
+    filter {}
 
     expiration {
       days = 90
@@ -65,7 +65,7 @@ resource "aws_s3_bucket_ownership_controls" "controls" {
 }
 
 resource "aws_s3_bucket_acl" "acl" {
-  depends_on = [aws_s3_bucket_ownership_controls.example]
+  depends_on = [aws_s3_bucket_ownership_controls.controls]
 
   bucket = aws_s3_bucket.bucket.id
   acl    = "private"
