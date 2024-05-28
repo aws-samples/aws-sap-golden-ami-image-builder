@@ -1,0 +1,11 @@
+---
+
+- name: Install ZYPPER dependencies
+  zypper:
+    name: "{{ suse_15_5_packages }}"
+    state: present
+  
+- name: Update all packages
+  zypper:
+    name: '*'
+    state: latest

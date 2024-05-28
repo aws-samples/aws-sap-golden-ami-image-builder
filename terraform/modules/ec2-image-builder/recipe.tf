@@ -22,6 +22,8 @@ resource "aws_imagebuilder_image_recipe" "this" {
     component_arn = aws_imagebuilder_component.custom_ansible.arn
   }
 
+  user_data_base64 = base64encode(var.operating_system == "SUSE" ? local.user_data_suse_template : local.user_data_suse_others)
+
   working_directory = "/home/ec2-user"
 
   tags = var.tags

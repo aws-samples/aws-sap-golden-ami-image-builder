@@ -31,6 +31,11 @@ variable "base_ami" {
 variable "operating_system" {
   description = "Operating system name for creating components"
   type        = string
+
+  validation {
+    condition     = contains(["OEL", "RHEL", "SUSE"], var.operating_system)
+    error_message = "The operating_system must be either OEL, RHEL or SUSE"
+  }
 }
 
 variable "final_usage_of_ami" {
@@ -66,4 +71,9 @@ variable "versions" {
 variable "version_to_publish" {
   description = "The version index to publish from the list above"
   type        = string
+}
+
+variable "suse_sp_version" {
+  description = "SUSE Version with Service Package to enable repositoryes. Example: 15.5 means version 15 Service Package 5"
+  type = string
 }
