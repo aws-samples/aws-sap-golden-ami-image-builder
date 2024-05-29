@@ -11,22 +11,20 @@
   include_tasks: oel/install_deps.yaml
   when: ansible_distribution == "OracleLinux"
 
-- name: Show distribution
-  debug: 
-    msg: "{{ ansible_distribution }}"
-
 - name: Install dependencies for SUSE
   include_tasks: suse/install_deps.yaml
-  when: ansible_distribution == "SUSE"
+  when: ansible_distribution == "SLES_SAP"
 
 - name: Check if AWS CLI is available
   include_tasks: common/check_aws_cli.yaml
-
-- name: Install SSM
-  include_tasks: rhel/install_ssm.yaml
   
 - name: Install AWS SAP Data Provider for RedHat
   include_tasks: rhel/install_data_provider_rhel.yaml
-  
+  when: ansible_distribution == "OracleLinux" or ansible_distribution == "RedHat"
+
+- name: Install AWS SAP Data Provider for SUSE
+  include_tasks: suse/install_data_provider_suse.yaml
+  when: ansible_distribution == "SLES_SAP"
+
 - name: Install EFS utils
   include_tasks: rhel/install_efs_utils.yaml

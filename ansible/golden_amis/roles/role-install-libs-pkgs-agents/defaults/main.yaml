@@ -3,7 +3,8 @@
 aws_installer_dir: /tmp/aws
 
 rhel_data_provider_url: https://aws-sap-dataprovider-us-east-1.s3.us-east-1.amazonaws.com/v4/installers/linux/RHEL/aws-sap-dataprovider-rhel-standalone.x86_64.rpm
-rhel_data_provider_installer_dest_path: /tmp/data_provider_rhel.rpm
+suse_data_provider_url: https://aws-sap-dataprovider-us-east-1.s3.us-east-1.amazonaws.com/v4/installers/linux/SUSE/aws-sap-dataprovider-sles-standalone.x86_64.rpm
+data_provider_installer_dest_path: /tmp/data_provider_rhel.rpm
 
 # REDHAT (RHEL) RELATED VARIABLES
 rhel_8_8_packages:
