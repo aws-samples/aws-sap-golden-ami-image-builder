@@ -26,5 +26,5 @@
   include_tasks: suse/install_data_provider_suse.yaml
   when: ansible_distribution == "SLES_SAP"
 
-- name: Install EFS utils
-  include_tasks: rhel/install_efs_utils.yaml
+# - name: Install EFS utils
+#   include_tasks: common/install_efs_utils.yaml
