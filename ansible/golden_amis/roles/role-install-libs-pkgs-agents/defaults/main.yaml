@@ -206,3 +206,8 @@ suse_15_5_packages:
   - numactl 
   - saptune 
   - patterns-sles-sap_server 
+  - rpm-build
+  - make
+  - rust
+  - cargo
+  - openssl-devel
