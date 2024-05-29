@@ -1,6 +1,6 @@
 ---
 
-default_instance_timezone: America/New_York
+default_instance_timezone: America/Los_Angeles
 timezone: "{{ input_custom_timezone | default(default_instance_timezone) }}"
 aws_installer_dir: /tmp/aws
 

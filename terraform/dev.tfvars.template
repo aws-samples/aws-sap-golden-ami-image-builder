@@ -30,4 +30,17 @@ image_builder_map = {
     }
     version_to_publish = "v1.0.0"
   }
+  suse_sap_15_5 = {
+    app_name           = "SUSE"
+    operating_system   = "SUSE"
+    final_usage_of_ami = "SAP"
+
+    base_ami = "ami-01ee0f5d6dfe22e54"
+    suse_sp_version = "15.5"
+
+    versions = {
+      "v1.0.0" : "1.0.0"
+    }
+    version_to_publish = "v1.0.0"
+  }
 }
