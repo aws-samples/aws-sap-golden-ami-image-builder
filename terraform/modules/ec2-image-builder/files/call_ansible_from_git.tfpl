@@ -11,6 +11,7 @@ phases:
             - sles_distro=$(cat /etc/os-release | head -1)
             - if [[ $sles_distro == *"SLES"* ]]; then
             -   sudo suseconnect -p PackageHub/${SUSE_SP_VERSION}/x86_64
+            -   sudo suseconnect -p sle-module-legacy/${SUSE_SP_VERSION}/x86_64
             -   sudo zypper install -y ansible git
             - else
             -   linux_distro=$(rpm -qf /etc/redhat-release)
