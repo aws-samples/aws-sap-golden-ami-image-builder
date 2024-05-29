@@ -3,11 +3,7 @@ locals {
     SUSE_SP_VERSION = var.suse_sp_version
   })
 
-  user_data_suse_template = templatefile("${path.module}/files/user_data_suse.tfpl", {
-
-  })
-
-  user_data_others_template = templatefile("${path.module}/files/user_data_others.tfpl", {
+  user_data_template = templatefile("${path.module}/files/user_data.tfpl", {
 
   })
 }

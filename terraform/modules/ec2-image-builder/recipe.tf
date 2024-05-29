@@ -22,7 +22,7 @@ resource "aws_imagebuilder_image_recipe" "this" {
     component_arn = aws_imagebuilder_component.component.arn
   }
 
-  user_data_base64 = base64encode(var.operating_system == "SUSE" ? local.user_data_suse_template : local.user_data_others_template)
+  user_data_base64 = base64encode(local.user_data_template)
 
   working_directory = "/home/ec2-user"
 
