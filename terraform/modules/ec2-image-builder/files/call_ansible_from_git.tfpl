@@ -28,7 +28,7 @@ phases:
           commands:
             - ansible_playbook_folder="/home/ec2-user/sap-ec2-image-builder"
             - rm -rf $ansible_playbook_folder
-            - git clone -b dev https://github.com/aws-samples/aws-sap-golden-ami-image-builder.git $ansible_playbook_folder
+            - git clone https://github.com/aws-samples/aws-sap-golden-ami-image-builder.git $ansible_playbook_folder
       - name: InvokeAnsible
         action: ExecuteBinary
         inputs:
