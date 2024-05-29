@@ -8,6 +8,7 @@ module "ec2_image_builder" {
   kms_key_arn = var.kms_key_arn
 
   operating_system   = each.value["operating_system"]
+  suse_sp_version    = try(each.value["suse_sp_version"], "")
   final_usage_of_ami = each.value["final_usage_of_ami"]
   versions           = each.value["versions"]
   version_to_publish = each.value["version_to_publish"]

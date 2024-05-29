@@ -3,7 +3,8 @@
 aws_installer_dir: /tmp/aws
 
 rhel_data_provider_url: https://aws-sap-dataprovider-us-east-1.s3.us-east-1.amazonaws.com/v4/installers/linux/RHEL/aws-sap-dataprovider-rhel-standalone.x86_64.rpm
-rhel_data_provider_installer_dest_path: /tmp/data_provider_rhel.rpm
+suse_data_provider_url: https://aws-sap-dataprovider-us-east-1.s3.us-east-1.amazonaws.com/v4/installers/linux/SUSE/aws-sap-dataprovider-sles-standalone.x86_64.rpm
+data_provider_installer_dest_path: /tmp/data_provider_rhel.rpm
 
 # REDHAT (RHEL) RELATED VARIABLES
 rhel_8_8_packages:
@@ -178,30 +179,35 @@ oel_yum_packages_32bits:
   - libibverbs.i686
 
 suse_15_5_packages:
-  - systemd 
-  - gtk2 
-  - libicu 
-  - sudo 
-  - tcsh 
-  - libssh2-1 
-  - autoyast2-installation 
-  - yast2-ncurses 
-  - cpupower 
-  - libgcc_s1 
-  - libstdc++6 
-  - nvme-cli 
-  - cloud-netconfig-ec2 
-  - libopenssl1_0_0  
-  - insserv-compat 
-  - unrar_wrapper 
-  - chrony 
-  - net-tools-deprecated 
-  - libnuma-devel 
-  - gcc 
-  - gcc-c++ 
-  - libatomic1 
-  - ntp 
-  - sapconf 
-  - numactl 
-  - saptune 
-  - patterns-sles-sap_server 
+  - systemd
+  - gtk2
+  - libicu
+  - sudo
+  - tcsh
+  - libssh2-1
+  - autoyast2-installation
+  - yast2-ncurses
+  - cpupower
+  - libgcc_s1
+  - libstdc++6
+  - nvme-cli
+  - cloud-netconfig-ec2
+  - libopenssl1_0_0
+  - insserv-compat
+  - unrar_wrapper
+  - chrony
+  - net-tools-deprecated
+  - libnuma-devel
+  - gcc
+  - gcc-c++
+  - libatomic1
+  - ntp
+  - sapconf
+  - numactl
+  - saptune
+  - patterns-sles-sap_server
+  - rpm-build
+  - make
+  - rust
+  - cargo
+  - openssl-devel

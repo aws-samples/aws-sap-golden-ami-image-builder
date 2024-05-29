@@ -1,6 +1,7 @@
 *.pem
 *.terraform
 *.terraform.*
+errored.tfstate
 assume_role.sh
 tfplan.log
 run_terraform_init_local.sh
