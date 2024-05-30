@@ -13,7 +13,7 @@
 
 - name: Make rpm
   shell: |
-    source "$HOME/.cargo/env" && \
+    source "/root/.cargo/env" && \
     make clean rpm
   args:
     chdir: /tmp/efs-utils
