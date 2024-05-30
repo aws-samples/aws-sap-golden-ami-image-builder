@@ -1,0 +1,31 @@
+---
+
+- name: Install Rust and Cargo from rustup
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+- name: Make sure efs-utils is not present
+  file:
+    path: /tmp/efs-utils
+    state: absent
+
+- name: Clone efs-utils repo
+  command: git clone https://github.com/aws/efs-utils /tmp/efs-utils
+
+- name: Make rpm
+  shell: |
+    export PATH="/root/.cargo/bin:$PATH" && \
+    make clean rpm
+  args:
+    chdir: /tmp/efs-utils
+
+- name: Find generated RPM file
+  find:
+    paths: /tmp/efs-utils/build
+    patterns: 'amazon-efs-utils*rpm'
+  register: found_rpm_file
+
+- name: Install amazon-efs-utils
+  yum:
+    name: "{{ found_rpm_file.files[0].path }}"
+    state: present
+    disable_gpg_check: true
