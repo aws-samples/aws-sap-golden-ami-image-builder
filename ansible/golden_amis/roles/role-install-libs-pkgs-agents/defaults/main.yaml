@@ -208,6 +208,4 @@ suse_15_5_packages:
   - patterns-sles-sap_server
   - rpm-build
   - make
-  - rust
-  - cargo
   - openssl-devel
