@@ -1,7 +1,7 @@
 ---
 
 - name: Install Rust and Cargo from rustup
-  command: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh "$HOME/.cargo/env"
+  command: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 - name: Make sure efs-utils is not present
   file:
@@ -12,7 +12,7 @@
   command: git clone https://github.com/aws/efs-utils /tmp/efs-utils
 
 - name: Make rpm
-  command: make clean rpm
+  command: export PATH="$HOME/.cargo/bin:$PATH"; make clean rpm
   args:
     chdir: /tmp/efs-utils
 
