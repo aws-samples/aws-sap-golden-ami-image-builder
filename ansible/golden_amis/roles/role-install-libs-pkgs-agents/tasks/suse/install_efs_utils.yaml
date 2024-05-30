@@ -12,7 +12,7 @@
   command: git clone https://github.com/aws/efs-utils /tmp/efs-utils
 
 - name: Make rpm
-  command: export PATH="$HOME/.cargo/bin:$PATH"; make clean rpm
+  shell: export PATH="$HOME/.cargo/bin:$PATH"; make clean rpm
   args:
     chdir: /tmp/efs-utils
 
