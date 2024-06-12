@@ -31,7 +31,7 @@ Below you can find all the tags applied by default to the resources created by t
 | Owner |              IT
 | Environment |        var.environment
 | ManagedBy |          Terraform
-| GitHubRepo |         https://github.com/guisesterheim/sap-ec2-image-builder
+| GitHubRepo |         https://github.com/aws-samples/aws-sap-golden-ami-image-builder
 
 # How to customize your instance configuration using the provided Ansible code
 
